@@ -49,7 +49,7 @@ print(warrior_prime)
 
 
 class Orc(Warrior):
-   
+
     def __init__(self, health=55, attack=6, fury=2):
         super().__init__(health, attack)
         self.fury = fury
@@ -72,3 +72,25 @@ orc = Orc()
 print(orc.is_alive())
 orc2 = orc + 3
 print(orc2)
+
+
+# 3. Функция fight() — бой между двумя воинами
+
+def fight(warrior, orc):
+
+    while warrior.is_alive() and orc.is_alive():
+        damage_from_1 = warrior.attack
+        orc.health = orc.health - damage_from_1
+        if orc.health <= 0:
+            print("Результат боя: Воин победил")
+            return True
+        damage_from_2 = orc.attack + orc.fury
+        warrior.health = warrior.health - damage_from_2
+        if warrior.health <= 0:
+            print("Результат боя: Орк победил")
+            return False
+
+
+boris = Warrior()
+emelya = Orc()
+print(fight(boris, emelya))
